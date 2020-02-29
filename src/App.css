@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.header-style{
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 45px 0;
+}
+
+.mr-2{
+  margin-right: 2px;
+}
+
+.pd-r-0{
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.pd-l-0{
+  padding-left: 0;
+}
+
+.align{
+  margin: 2px 57% 0 43%;
+}
+
+.align-item{
+  padding-left: 30%;
+  color: white;
+}
