@@ -6,6 +6,10 @@ export default class DataItem extends Component {
         this.props.onChangeStatus(this.props.task.id);
     }
 
+    onDeleteItem = () => {
+        this.props.onDeleteItem(this.props.task.id);
+    }
+
 	render() {
 
         var { task, index } = this.props;
@@ -21,7 +25,11 @@ export default class DataItem extends Component {
                 </td>
                 <td>
                     <button className="align-item" type="button" className="btn btn-warning mr-2">Update</button>
-                    <button type="button" className="btn btn-danger">Delete</button>
+                    <button 
+                        type="button" 
+                        className="btn btn-danger"
+                        onClick={ this.onDeleteItem }
+                    >Delete</button>
                 </td>
             </tr>
 		);

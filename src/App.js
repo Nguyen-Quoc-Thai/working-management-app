@@ -86,14 +86,16 @@ export default class App extends Component {
     onChangeStatus = (id) => {
         var { tasks } = this.state;
         var indexOfID = this.findIndexOfID(id);
-        
-        tasks[indexOfID].status = !tasks[indexOfID].status;
 
-        this.setState({
-            tasks: tasks
-        });
+        if(indexOfID!==-1){
+             tasks[indexOfID].status = !tasks[indexOfID].status;
 
-        localStorage.setItem('tasks',JSON.stringify(tasks));
+            this.setState({
+                tasks: tasks
+            });
+
+            localStorage.setItem('tasks',JSON.stringify(tasks));    
+        }
     }
 
     findIndexOfID = (id) => {
@@ -105,6 +107,23 @@ export default class App extends Component {
         }
 
         return -1;
+    }
+
+    onDeleteItem = (id) => {
+        var { tasks } = this.state;
+        var indexOfID = this.findIndexOfID(id);
+        
+        if(indexOfID!==-1){
+            this.onClickAddFormTitle();
+            tasks.splice(indexOfID, 1);        
+
+            this.setState({
+                tasks: tasks
+            });
+
+            localStorage.setItem('tasks',JSON.stringify(tasks));    
+        }
+        
     }
 
 
@@ -138,7 +157,11 @@ export default class App extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <DataTable tasks={ this.state.tasks } onChangeStatus={this.onChangeStatus}/>
+                                    <DataTable 
+                                        tasks={ this.state.tasks } 
+                                        onChangeStatus={this.onChangeStatus}
+                                        onDeleteItem={this.onDeleteItem}
+                                    />
                                 </div>
                             </div>
                         </div>
