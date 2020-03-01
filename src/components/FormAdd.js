@@ -6,7 +6,7 @@ export default class FormAdd extends Component {
         super(props);
         this.state={
             name: '',
-            status: true
+            status: false
         }
     }
 
@@ -27,6 +27,10 @@ export default class FormAdd extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onSubmit(this.state);
+    }
+
+    onClear = () => {
+        this.props.onClickAddFormTitle();
     }
 
 	render() {
@@ -68,7 +72,7 @@ export default class FormAdd extends Component {
                             </div>
                         
                             <button type="submit" className="btn btn-success mr-2">Save</button>
-                            <button type="submit" className="btn btn-warning">Cancel</button>
+                            <button type="button" className="btn btn-warning" onClick={this.onClear}>Cancel</button>
                         </form>
                     </div>
                 </div>
