@@ -7,7 +7,12 @@ export default class DataTable extends Component {
 		var { tasks } =  this.props; // var tasks = this.props.tasks;
 
 		var elementTasks = tasks.map((task, index) => {
-			return <DataItem key={ task.id } index={ index } task={ task }/>
+			return <DataItem 
+						key={ task.id } 
+						index={ index } 
+						task={ task }
+						onChangeStatus={ this.props.onChangeStatus }
+					/>
 		});
 
 		return (

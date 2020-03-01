@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 export default class DataItem extends Component {
+
+    onChangeStatus = () => {
+        this.props.onChangeStatus(this.props.task.id);
+    }
+
 	render() {
 
         var { task, index } = this.props;
@@ -12,7 +17,7 @@ export default class DataItem extends Component {
                     { task.name }
                 </td>
                 <td>
-                    <span className={task.status===true?"label label-success align":"label label-danger align"}>{ task.status===true?'Avtive':'DeAvtive' }</span>
+                    <span className={task.status===true?"label label-success align":"label label-danger align"} onClick={ this.onChangeStatus }>{ task.status===true?'Avtive':'DeAvtive' }</span>
                 </td>
                 <td>
                     <button className="align-item" type="button" className="btn btn-warning mr-2">Update</button>

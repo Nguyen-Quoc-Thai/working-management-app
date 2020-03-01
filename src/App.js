@@ -81,9 +81,33 @@ export default class App extends Component {
         })
 
         localStorage.setItem('tasks',JSON.stringify(tasks));
-
-        console.log(this.state);
     }
+
+    onChangeStatus = (id) => {
+        var { tasks } = this.state;
+        var indexOfID = this.findIndexOfID(id);
+        
+        tasks[indexOfID].status = !tasks[indexOfID].status;
+
+        this.setState({
+            tasks: tasks
+        });
+
+        localStorage.setItem('tasks',JSON.stringify(tasks));
+    }
+
+    findIndexOfID = (id) => {
+        var { tasks } = this.state;
+        for (let i=0; i<tasks.length; i++) {
+            if(tasks[i].id===id){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+
     render() {
 
         var formAdd = this.state.formAddActive ? <FormAdd onClickAddFormTitle={ this.onClickAddFormTitle } onSubmit={this.onSubmit}/>:<div></div>;
@@ -114,7 +138,7 @@ export default class App extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <DataTable tasks={ this.state.tasks }/>
+                                    <DataTable tasks={ this.state.tasks } onChangeStatus={this.onChangeStatus}/>
                                 </div>
                             </div>
                         </div>
