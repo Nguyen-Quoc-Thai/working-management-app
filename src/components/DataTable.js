@@ -14,6 +14,7 @@ export default class DataTable extends Component {
 						onChangeStatus={ this.props.onChangeStatus }
 						onDeleteItem={ this.props.onDeleteItem }
 						onUpdateItem={ this.props.onUpdateItem }
+
 					/>
 		});
 

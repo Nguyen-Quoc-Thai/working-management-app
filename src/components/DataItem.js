@@ -30,13 +30,13 @@ export default class DataItem extends Component {
                 <td>
                     <button 
                         className="align-item" 
-                        type="button" 
+                        type="submit" 
                         className="btn btn-warning mr-2"
                         onClick={ this.onUpdateItem }
                     >
                     Update</button>
                     <button 
-                        type="button" 
+                        type="submit" 
                         className="btn btn-danger"
                         onClick={ this.onDeleteItem }
                     >Delete</button>

@@ -35,26 +35,42 @@ export default class FormAdd extends Component {
     }
 
     componentWillMount(){
-        if(this.props.taskEditing){
+        var taskEditing = this.props.taskEditing;
+
+        if(taskEditing){
             this.setState({
-                id: this.props.taskEditing.id,
-                name: this.props.taskEditing.name,
-                status: this.props.taskEditing.status
-            })
+                id: taskEditing.id,
+                name: taskEditing.name,
+                status: taskEditing.status
+            });
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps && nextProps.taskEditing){
+            this.setState({
+                id: nextProps.taskEditing.id,
+                name: nextProps.taskEditing.name,
+                status: nextProps.taskEditing.status
+            });
+        }else if(nextProps && !nextProps.taskEditing){
+            this.setState({
+                id: '',
+                name: '',
+                status: false
+            });  
         }
     }
 
 	render() {
 
-        var element = this.state;
+        var taskEditing = this.state;
 
-        console.log(element);
-		
         return (
 			<div>
 				<div className="panel panel-warning">
                     <div className="panel-heading">
-                        <h3 className="panel-title" onClick={ this.onClickAddFormTitle }> {element.id===""?"Add Working":"Update Working"}
+                        <h3 className="panel-title" onClick={ this.onClickAddFormTitle }> {taskEditing.id===''?'Add Working':'Update Working'}
                         </h3>
                     </div>
                     <div className="panel-body">
@@ -67,7 +83,7 @@ export default class FormAdd extends Component {
                                     type="text" 
                                     className="form-control"
                                     name="name"
-                                    value={this.state.name}
+                                    value={taskEditing.name}
                                     onChange={this.onChange}
                                 />
                                 <br/>
@@ -77,7 +93,7 @@ export default class FormAdd extends Component {
                                 <select 
                                     className="form-control"
                                     name="status"
-                                    value={this.state.status}
+                                    value={taskEditing.status}
                                     onChange={this.onChange}
                                 >
                                     <option value={true}>Active</option>

@@ -14,7 +14,7 @@ export default class App extends Component {
             super(props);
             this.state = {
                 tasks : [], // id, name, status
-                formAddActive: true,
+                formAddActive: false,
                 taskEditing: null
             };
     }
@@ -63,22 +63,36 @@ export default class App extends Component {
 
     onClickAddFormTitle = () =>{
         this.setState({
-            formAddActive : false
+            formAddActive : false,
         });
     }
     
     onClickAddFormBtn = () =>{
-        this.setState({
-            formAddActive : !this.state.formAddActive
-        });
+        if(this.state.formAddActive){
+            this.setState({
+                taskEditing: null
+            });
+        }else{
+            this.setState({
+                formAddActive : true,
+                taskEditing: null
+            });
+        }
     }
 
     onSubmit = (item) => {
         var { tasks } = this.state;
-        item.id = this.generateID();
-        tasks.push(item);
+
+        if(item && item.id===''){
+            item.id = this.generateID();
+            tasks.push(item);    
+        }else{
+            var indexOfID = this.findIndexOfID(item.id);
+            tasks[indexOfID] = item;
+        }
+        
         this.setState({
-            tasks:tasks
+            tasks:tasks,
         })
 
         localStorage.setItem('tasks',JSON.stringify(tasks));
@@ -130,28 +144,27 @@ export default class App extends Component {
     onUpdateItem = (id) => {
         var { tasks } = this.state;
         var indexOfID = this.findIndexOfID(id);
+        var taskEdit = tasks[indexOfID];
 
-        if(indexOfID!==-1){
-            var taskEditing = tasks[indexOfID];
-
-            this.setState({
-                taskEditing: taskEditing
-            })
-            console.log(taskEditing);
-        }
+        this.setState({
+            taskEditing: taskEdit,
+        });
 
         if(this.state.formAddActive===false){
-            this.onClickAddFormBtn();   
+            this.setState({
+                formAddActive: true
+            });   
         }
     }
 
 
     render() {
 
+        var taskEditing = this.state.taskEditing;
         var formAdd = this.state.formAddActive ? <FormAdd 
                                                         onClickAddFormTitle={ this.onClickAddFormTitle } 
                                                         onSubmit={this.onSubmit}
-                                                        onUpdateItem={this.state.taskEditing}
+                                                        taskEditing={taskEditing}
                                                     />:<div></div>;
 
         return (
