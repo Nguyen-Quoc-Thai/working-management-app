@@ -15,7 +15,11 @@ export default class App extends Component {
             this.state = {
                 tasks : [], // id, name, status
                 formAddActive: false,
-                taskEditing: null
+                taskEditing: null,
+                filter: {
+                    name: '',
+                    status: -1
+                }
             };
     }
 
@@ -157,10 +161,33 @@ export default class App extends Component {
         }
     }
 
+    onFilter = (filterName, filterStatus) => {
+        this.setState({
+            filter:{
+                name: filterName,
+                status: parseInt(filterStatus)
+            }
+        });
+    }
 
     render() {
 
-        var taskEditing = this.state.taskEditing;
+        var { tasks, formAddActive, taskEditing, filter } = this.state; 
+
+        if(filter){
+            if(filter.name){
+                tasks = tasks.filter((task) => {
+                    return task.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1;
+                })
+            }
+            tasks = tasks.filter((task) => {
+                if(filter.status !== -1){
+                    return task.status === (filter.status === 1 ? false : true);   
+                }
+                return task;
+            })
+        }
+
         var formAdd = this.state.formAddActive ? <FormAdd 
                                                         onClickAddFormTitle={ this.onClickAddFormTitle } 
                                                         onSubmit={this.onSubmit}
@@ -194,10 +221,11 @@ export default class App extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <DataTable 
-                                        tasks={ this.state.tasks } 
+                                        tasks={ tasks } 
                                         onChangeStatus={this.onChangeStatus}
                                         onDeleteItem={this.onDeleteItem}
                                         onUpdateItem={this.onUpdateItem}
+                                        onFilter={this.onFilter}
                                     />
                                 </div>
                             </div>

@@ -2,6 +2,29 @@ import React, { Component } from 'react';
 import DataItem from './DataItem';
 
 export default class DataTable extends Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			filterName: '',
+			filterStatus: '-1'
+		}
+	}
+
+	onChange = (event) => {
+		var target = event.target;
+		var name = target.name;
+		var value = target.value;
+
+		this.setState({
+			[name]:value
+		});
+
+		this.props.onFilter(
+			name === 'filterName' ? value : this.state.filterName,
+			name === 'filterStatus' ? value : this.state.filterStatus);
+	}
+
 	render() {
 
 		var { tasks } =  this.props; // var tasks = this.props.tasks;
@@ -35,13 +58,25 @@ export default class DataTable extends Component {
 	                    <tr>
 	                        <td></td>
 	                        <td>
-	                            <input type="text"className="form-control"/>
+	                            <input 
+	                            	type="text"
+	                            	className="form-control" 
+	                            	name="filterName"
+	                            	value={this.state.filterName}
+	                            	onChange={this.onChange}
+	                             />
 	                        </td>
 	                        <td>
-	                            <select id="input" className="form-control">
-	                                <option>All</option>
-	                                <option>Avtive</option>
-	                                <option>DeActive</option>
+	                            <select
+	                            	id="input" 
+	                            	className="form-control"
+	                            	name="filterStatus"
+	                            	value={this.state.filterStatus}
+	                            	onChange={this.onChange}
+	                            >
+	                                <option value={-1}>All</option>
+	                                <option value={0}>Avtive</option>
+	                                <option value={1}>DeActive</option>
 	                            </select>
 	                        </td>
 	                        <td>
