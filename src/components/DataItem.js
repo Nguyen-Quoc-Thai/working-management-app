@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 
 export default class DataItem extends Component {
 	render() {
+
+        var { task, index } = this.props;
+
 		return (
 			<tr>
-                <td>1</td>
+                <td>{ index + 1 }</td>
                 <td>
-                    Task title
+                    { task.name }
                 </td>
                 <td>
-                    <span className="label label-danger align">DeAvtive</span>
+                    <span className={task.status===true?"label label-success align":"label label-danger align"}>{ task.status===true?'Avtive':'DeAvtive' }</span>
                 </td>
                 <td>
                     <button className="align-item" type="button" className="btn btn-warning mr-2">Update</button>

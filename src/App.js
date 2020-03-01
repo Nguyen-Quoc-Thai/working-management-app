@@ -9,6 +9,56 @@ import DataTable from './components/DataTable';
 
 
 export default class App extends Component {
+    
+    constructor(props){
+            super(props);
+            this.state = {
+                tasks : [] // id, name, status
+            };
+    }
+
+    componentWillMount(){
+        if(localStorage && localStorage.getItem('tasks')){
+            this.setState({
+                tasks: JSON.parse(localStorage.getItem('tasks'))
+            });
+        }
+    }
+
+    onGenerateData = () => {
+        var tasks = [
+            {
+                id: this.generateID(),
+                name: "An",
+                status: true
+            },
+            {
+                id: this.generateID(),
+                name: "Ngu",
+                status: false
+            },
+            {
+                id: this.generateID(),
+                name: "Code",
+                status: true
+            }
+        ];
+
+        this.setState({
+            tasks : tasks
+        });
+
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    generateID(){
+        return this.rdS() + '-' + this.rdS() + this.rdS() + "-" + this.rdS() + "-" + this.rdS() + this.rdS() + this.rdS();
+    }
+
+    rdS(){ // generate random string
+        return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
+    }
+
     render() {
         return (
             <div>
@@ -23,6 +73,7 @@ export default class App extends Component {
                         <div className="row">
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <BtnAddForm/>
+                                <button type="button" className="btn btn-danger" onClick={ this.onGenerateData }>Gererate DATA</button>
                             </div>
                         </div>
                         <div className="row">
@@ -36,7 +87,7 @@ export default class App extends Component {
                         </div>
                         <div className="row">
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <DataTable/>
+                                <DataTable tasks={ this.state.tasks }/>
                             </div>
                         </div>
                     </div>

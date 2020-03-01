@@ -3,6 +3,13 @@ import DataItem from './DataItem';
 
 export default class DataTable extends Component {
 	render() {
+
+		var { tasks } =  this.props; // var tasks = this.props.tasks;
+
+		var elementTasks = tasks.map((task, index) => {
+			return <DataItem key={ task.id } index={ index } task={ task }/>
+		});
+
 		return (
 			<div>
 				<br/>
@@ -32,7 +39,7 @@ export default class DataTable extends Component {
 	                        <td>
 	                        </td>
 	                    </tr>
-	                    <DataItem/>
+	                    { elementTasks }
 	                </tbody>
 	            </table>
 			</div>
