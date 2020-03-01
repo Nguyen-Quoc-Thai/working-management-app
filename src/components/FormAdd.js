@@ -5,6 +5,7 @@ export default class FormAdd extends Component {
     constructor(props){
         super(props);
         this.state={
+            id: '',
             name: '',
             status: false
         }
@@ -33,13 +34,27 @@ export default class FormAdd extends Component {
         this.props.onClickAddFormTitle();
     }
 
+    componentWillMount(){
+        if(this.props.taskEditing){
+            this.setState({
+                id: this.props.taskEditing.id,
+                name: this.props.taskEditing.name,
+                status: this.props.taskEditing.status
+            })
+        }
+    }
+
 	render() {
-		return (
+
+        var element = this.state;
+
+        console.log(element);
+		
+        return (
 			<div>
 				<div className="panel panel-warning">
                     <div className="panel-heading">
-                        <h3 className="panel-title" onClick={ this.onClickAddFormTitle }>
-                        ADD Working
+                        <h3 className="panel-title" onClick={ this.onClickAddFormTitle }> {element.id===""?"Add Working":"Update Working"}
                         </h3>
                     </div>
                     <div className="panel-body">

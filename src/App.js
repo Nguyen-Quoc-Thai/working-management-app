@@ -14,7 +14,8 @@ export default class App extends Component {
             super(props);
             this.state = {
                 tasks : [], // id, name, status
-                formAddActive: true
+                formAddActive: true,
+                taskEditing: null
             };
     }
 
@@ -126,10 +127,32 @@ export default class App extends Component {
         
     }
 
+    onUpdateItem = (id) => {
+        var { tasks } = this.state;
+        var indexOfID = this.findIndexOfID(id);
+
+        if(indexOfID!==-1){
+            var taskEditing = tasks[indexOfID];
+
+            this.setState({
+                taskEditing: taskEditing
+            })
+            console.log(taskEditing);
+        }
+
+        if(this.state.formAddActive===false){
+            this.onClickAddFormBtn();   
+        }
+    }
+
 
     render() {
 
-        var formAdd = this.state.formAddActive ? <FormAdd onClickAddFormTitle={ this.onClickAddFormTitle } onSubmit={this.onSubmit}/>:<div></div>;
+        var formAdd = this.state.formAddActive ? <FormAdd 
+                                                        onClickAddFormTitle={ this.onClickAddFormTitle } 
+                                                        onSubmit={this.onSubmit}
+                                                        onUpdateItem={this.state.taskEditing}
+                                                    />:<div></div>;
 
         return (
             <div>
@@ -161,6 +184,7 @@ export default class App extends Component {
                                         tasks={ this.state.tasks } 
                                         onChangeStatus={this.onChangeStatus}
                                         onDeleteItem={this.onDeleteItem}
+                                        onUpdateItem={this.onUpdateItem}
                                     />
                                 </div>
                             </div>

@@ -13,6 +13,7 @@ export default class DataTable extends Component {
 						task={ task }
 						onChangeStatus={ this.props.onChangeStatus }
 						onDeleteItem={ this.props.onDeleteItem }
+						onUpdateItem={ this.props.onUpdateItem }
 					/>
 		});
 
