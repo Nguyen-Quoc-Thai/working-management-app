@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 
 export default class FormAdd extends Component {
+
+    onClickAddFormTitle = () =>{
+        this.props.onClickAddFormTitle();
+    }
+
 	render() {
 		return (
 			<div>
 				<div className="panel panel-warning">
                     <div className="panel-heading">
-                        <h3 className="panel-title">ADD Working</h3>
+                        <h3 className="panel-title" onClick={ this.onClickAddFormTitle }>
+                        ADD Working
+                        </h3>
                     </div>
                     <div className="panel-body">
                         <label>
