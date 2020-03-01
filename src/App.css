@@ -69,3 +69,13 @@
 .panel-title{
   cursor: pointer;
 }
+
+.btn{
+  height:30px;
+  width: 90px;
+  text-align: center
+}
+
+.he-30{
+  height: 30px;
+}

@@ -6,7 +6,7 @@ export default class DataTable extends Component {
 			<div>
 				<div className="col-xs-8 col-sm-8 col-md-8 col-lg-8 pd-r-0">
                     <br/>
-                    <input type="text" className="form-control" placeholder = "Enter key word" required="required"/>
+                    <input type="text" className="form-control he-30" placeholder = "Enter key word" required="required"/>
                 </div>
                 <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4 pd-l-0">
                     <br/>

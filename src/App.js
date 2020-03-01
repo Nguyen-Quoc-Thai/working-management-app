@@ -72,38 +72,50 @@ export default class App extends Component {
         });
     }
 
+    onSubmit = (item) => {
+        var { tasks } = this.state;
+        item.id = this.generateID();
+        tasks.push(item);
+        this.setState({
+            tasks:tasks
+        })
+
+        localStorage.setItem('tasks',JSON.stringify(tasks));
+
+        console.log(this.state);
+    }
     render() {
 
-        var formAdd = this.state.formAddActive ? <FormAdd onClickAddFormTitle={ this.onClickAddFormTitle }/>:<div></div>;
+        var formAdd = this.state.formAddActive ? <FormAdd onClickAddFormTitle={ this.onClickAddFormTitle } onSubmit={this.onSubmit}/>:<div></div>;
 
         return (
             <div>
                 <div className="container">
                     <h1 className="header-style">Working Management</h1>
-                </div>
-                <div className="row">
-                    <div className={this.state.formAddActive ? "col-xs-4 col-sm-4 col-md-4 col-lg-4":""}>
-                        { formAdd }
-                    </div>
-                    <div className={this.state.formAddActive ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <BtnAddForm onClickAddFormBtn={this.onClickAddFormBtn}/>
-                                <button type="button" className="btn btn-danger" onClick={ this.onGenerateData }>Gererate DATA</button>
-                            </div>
+                    <div className="row">
+                        <div className={this.state.formAddActive ? "col-xs-4 col-sm-4 col-md-4 col-lg-4":""}>
+                            { formAdd }
                         </div>
-                        <div className="row">
-                            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                <SearchBar/>
+                        <div className={this.state.formAddActive ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <BtnAddForm onClickAddFormBtn={this.onClickAddFormBtn}/>
+                                    <button type="button" className="btn btn-danger" onClick={ this.onGenerateData }>Gererate DATA</button>
+                                </div>
                             </div>
-                            
-                            <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                <BtnSort/>
+                            <div className="row">
+                                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <SearchBar/>
+                                </div>
+                                
+                                <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <BtnSort/>
+                                </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <DataTable tasks={ this.state.tasks }/>
+                            <div className="row">
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <DataTable tasks={ this.state.tasks }/>
+                                </div>
                             </div>
                         </div>
                     </div>
