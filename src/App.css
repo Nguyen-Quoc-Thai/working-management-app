@@ -82,6 +82,12 @@
   color: white;
 }
 
+.ov-hd{
+  max-width: 200px;
+  text-overflow: hidden;
+  overflow: hidden;
+}
+
 .al-ct{
   align-items: center;
   text-align: center;
@@ -106,9 +112,8 @@
   font-weight: 500;
 }
 
-.selected{
-    color: green;
-}
+.sort-item-selected{
+background-color: gray}
 
 .btn-add{
   height: 50px;

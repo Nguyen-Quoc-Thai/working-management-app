@@ -176,26 +176,6 @@ export default class App extends Component {
 
         var { tasks, formAddActive, taskEditing, filter, searchKeyWord, sort } = this.state; 
 
-        if(filter){
-            if(filter.name){
-                tasks = tasks.filter((task) => {
-                    return task.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1;
-                })
-            }
-            tasks = tasks.filter((task) => {
-                if(filter.status !== -1){ 
-                    return task.status === (filter.status === 1 ? false : true);   
-                }
-                return task;
-            })
-        }
-
-        if(searchKeyWord){
-            tasks = tasks.filter((task) => {
-                return task.name.toLowerCase().indexOf(searchKeyWord.toLowerCase()) !== -1;
-            })
-        }
-
         if(sort.by === 'name'){
             tasks.sort((task1, task2) => {
                 if(task1.name > task2.name) {
@@ -215,6 +195,26 @@ export default class App extends Component {
         }
 
         localStorage.setItem('tasks',JSON.stringify(tasks));
+
+        if(filter){
+            if(filter.name){
+                tasks = tasks.filter((task) => {
+                    return task.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1;
+                })
+            }
+            tasks = tasks.filter((task) => {
+                if(filter.status !== -1){ 
+                    return task.status === (filter.status === 1 ? false : true);   
+                }
+                return task;
+            })
+        }
+
+        if(searchKeyWord){
+            tasks = tasks.filter((task) => {
+                return task.name.toLowerCase().indexOf(searchKeyWord.toLowerCase()) !== -1;
+            })
+        }
 
         var formAdd = this.state.formAddActive ? <FormAdd 
                                                         onClickAddFormTitle={ this.onClickAddFormTitle } 

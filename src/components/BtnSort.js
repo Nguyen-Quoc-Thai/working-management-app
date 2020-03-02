@@ -12,7 +12,7 @@ export default class DataTable extends Component {
         }
     }
 
-    onSortTable = (sortName, sortValue) => {
+    onSortTable = (sortName, sortValue) => { 
         this.setState({
             sort: {
                 by: sortName,
@@ -36,24 +36,24 @@ export default class DataTable extends Component {
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <a 
-                            className={(sort.by==="name" && sort.value === 1 ? "dropdown-item selected" : "dropdown-item")} 
+                            className={(sort.by==="name" && sort.value === 1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('name', 1)}}
 
                         >Name A-Z</a>
                         <a 
-                            className={(sort.by==="name" && sort.value === -1 ? "dropdown-item selected" : "dropdown-item")} 
+                            className={(sort.by==="name" && sort.value === -1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('name', -1)}}
 
                         >Name Z-A</a>
                         
                         <hr/>
                         <a 
-                            className={(sort.by==="status" && sort.value === 1 ? "dropdown-item selected" : "dropdown-item")} 
+                            className={(sort.by==="status" && sort.value === 1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('status', 1)}}
 
                         >Status Active</a>
                         <a 
-                            className={(sort.by==="status" && sort.value === -1 ? "dropdown-item selected" : "dropdown-item")} 
+                            className={(sort.by==="status" && sort.value === -1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('status', -1)}}
 
                         >Status DeActive</a>

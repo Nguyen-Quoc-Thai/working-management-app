@@ -21,7 +21,7 @@ export default class DataItem extends Component {
 		return (
 			<tr>
                 <td className="al-ct">{ index + 1 }</td>
-                <td>
+                <td className="ov-hd">
                     { task.name }
                 </td>
                 <td className="al-ct">
