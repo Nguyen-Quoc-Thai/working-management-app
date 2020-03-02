@@ -19,7 +19,8 @@ export default class App extends Component {
                 filter: {
                     name: '',
                     status: -1
-                }
+                },
+                searchKeyWord: ''
             };
     }
 
@@ -170,9 +171,15 @@ export default class App extends Component {
         });
     }
 
+    onSearchKeyWord = (data) => {
+        this.setState({
+            searchKeyWord: data
+        });
+    }
+
     render() {
 
-        var { tasks, formAddActive, taskEditing, filter } = this.state; 
+        var { tasks, formAddActive, taskEditing, filter, searchKeyWord } = this.state; 
 
         if(filter){
             if(filter.name){
@@ -185,6 +192,12 @@ export default class App extends Component {
                     return task.status === (filter.status === 1 ? false : true);   
                 }
                 return task;
+            })
+        }
+
+        if(searchKeyWord){
+            tasks = tasks.filter((task) => {
+                return task.name.toLowerCase().indexOf(searchKeyWord.toLowerCase()) !== -1;
             })
         }
 
@@ -211,7 +224,7 @@ export default class App extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <SearchBar/>
+                                    <SearchBar onSearchKeyWord = { this.onSearchKeyWord }/>
                                 </div>
                                 
                                 <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
