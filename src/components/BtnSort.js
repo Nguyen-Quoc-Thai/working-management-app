@@ -1,7 +1,32 @@
 import React, { Component } from 'react';
 
 export default class DataTable extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            sort: {
+                by: '',
+                value: 0
+            }            
+        }
+    }
+
+    onSortTable = (sortName, sortValue) => {
+        this.setState({
+            sort: {
+                by: sortName,
+                value: sortValue
+            }
+        });
+
+        this.props.onSortTable(sortName, sortValue);
+    }
+
 	render() {
+
+        var { sort } = this.state;
+
 		return (
 			<div>
 				<br/>
@@ -10,11 +35,32 @@ export default class DataTable extends Component {
                         Sorted
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <a className="dropdown-item" href="#">Name A-Z</a>
-                        <a className="dropdown-item" href="#">Name Z-A</a>
+                        <a 
+                            className={(sort.by==="name" && sort.value === 1 ? "dropdown-item seleted" : "dropdown-item")} 
+                            href="#"
+                            onClick={() => {this.onSortTable('name', 1)}}
+
+                        >Name A-Z</a>
+                        <a 
+                            className={(sort.by==="name" && sort.value === -1 ? "dropdown-item seleted" : "dropdown-item")} 
+                            href="#"
+                            onClick={() => {this.onSortTable('name', -1)}}
+
+                        >Name Z-A</a>
+                        
                         <hr/>
-                        <a className="dropdown-item" href="#">Status Active</a>
-                        <a className="dropdown-item" href="#">Status DeActive</a>
+                        <a 
+                            className={(sort.by==="status" && sort.value === 1 ? "dropdown-item seleted" : "dropdown-item")} 
+                            href="#"
+                            onClick={() => {this.onSortTable('status', 1)}}
+
+                        >Status Active</a>
+                        <a 
+                            className={(sort.by==="status" && sort.value === -1 ? "dropdown-item seleted" : "dropdown-item")} 
+                            href="#"
+                            onClick={() => {this.onSortTable('status', -1)}}
+
+                        >Status DeActive</a>
                     </div>
                 </div>
 			</div>

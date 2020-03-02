@@ -20,7 +20,11 @@ export default class App extends Component {
                     name: '',
                     status: -1
                 },
-                searchKeyWord: ''
+                searchKeyWord: '',
+                sort: {
+                    by: '',
+                    value: 1
+                }
             };
     }
 
@@ -177,9 +181,18 @@ export default class App extends Component {
         });
     }
 
+    onSortTable = (sortName, sortValue) => {
+        this.setState({
+            sort: {
+                by: sortName,
+                value: parseInt(sortValue)
+            }
+        });
+    }
+
     render() {
 
-        var { tasks, formAddActive, taskEditing, filter, searchKeyWord } = this.state; 
+        var { tasks, formAddActive, taskEditing, filter, searchKeyWord, sort } = this.state; 
 
         if(filter){
             if(filter.name){
@@ -188,7 +201,7 @@ export default class App extends Component {
                 })
             }
             tasks = tasks.filter((task) => {
-                if(filter.status !== -1){
+                if(filter.status !== -1){ 
                     return task.status === (filter.status === 1 ? false : true);   
                 }
                 return task;
@@ -199,6 +212,24 @@ export default class App extends Component {
             tasks = tasks.filter((task) => {
                 return task.name.toLowerCase().indexOf(searchKeyWord.toLowerCase()) !== -1;
             })
+        }
+
+        if(sort.by === 'name'){
+            tasks.sort((task1, task2) => {
+                if(task1.name > task2.name) {
+                    return sort.value;  
+                }else if(task1.name < task2.name) {
+                    return -sort.value;  
+                }else return 0;
+            });
+        }else{
+            tasks.sort((task1, task2) => {
+                if(task1.status > task2.status) {
+                    return -sort.value;  
+                }else if(task1.status < task2.status) {
+                    return sort.value;  
+                }else return 0;
+            });
         }
 
         var formAdd = this.state.formAddActive ? <FormAdd 
@@ -228,7 +259,7 @@ export default class App extends Component {
                                 </div>
                                 
                                 <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                    <BtnSort/>
+                                    <BtnSort onSortTable={ this.onSortTable }/>
                                 </div>
                             </div>
                             <div className="row">
