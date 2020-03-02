@@ -45,7 +45,7 @@ export default class DataTable extends Component {
                     <br/>
                     <button 
                     	type="button" 
-                    	className="btn btn-primary"
+                    	className="btn btn-primary he-30"
                     	onClick={ this.onSearchKeyWord }
                     >Find</button>
                 </div>    

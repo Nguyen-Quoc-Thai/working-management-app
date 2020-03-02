@@ -9,7 +9,7 @@ export default class DataTable extends Component {
 	render() {
 		return (
 			<div>
-                <button type="button" className="btn btn-primary" onClick={this.onClickAddFormBtn}>ADD Working</button>
+                <button type="button" className="btn btn-primary btn-add" onClick={this.onClickAddFormBtn}>ADD Working</button>
 			</div>
 		);
 	}

@@ -6,7 +6,7 @@ export default class DataTable extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			filterName: '',
+			filterName: '', 
 			filterStatus: '-1'
 		}
 	}
@@ -46,7 +46,7 @@ export default class DataTable extends Component {
 				<br/>
 	            <br/>
 	            <table className="table table-hover">
-	                <thead>
+	                <thead className="align-header-table">
 	                    <tr>
 	                        <th>STT</th>
 	                        <th>Name</th>
@@ -55,12 +55,13 @@ export default class DataTable extends Component {
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                    <tr>
+	                    <tr className="he-header">
 	                        <td></td>
 	                        <td>
 	                            <input 
 	                            	type="text"
-	                            	className="form-control" 
+	                            	className="form-control he-30" 
+	                            	placeholder="Filter name"
 	                            	name="filterName"
 	                            	value={this.state.filterName}
 	                            	onChange={this.onChange}

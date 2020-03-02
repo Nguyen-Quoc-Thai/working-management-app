@@ -77,21 +77,21 @@ export default class FormAdd extends Component {
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label>
-                                    <span className="label label-info">Name</span>
+                                    <span className="label label-info ft-size">Name</span>
                                 </label>
                                 <input 
                                     type="text" 
-                                    className="form-control"
+                                    className="form-control mt-5px"
                                     name="name"
                                     value={taskEditing.name}
                                     onChange={this.onChange}
                                 />
                                 <br/>
                                 <label>
-                                    <span className="label label-info">Status</span>
+                                    <span className="label label-info ft-size">Status</span>
                                 </label>
                                 <select 
-                                    className="form-control"
+                                    className="form-control mt-5px"
                                     name="status"
                                     value={taskEditing.status}
                                     onChange={this.onChange}
@@ -102,8 +102,8 @@ export default class FormAdd extends Component {
                                 <br/>
                             </div>
                         
-                            <button type="submit" className="btn btn-success mr-2">Save</button>
-                            <button type="button" className="btn btn-warning" onClick={this.onClear}>Cancel</button>
+                            <button type="submit" className="btn btn-success mr-2 up-si">Save</button>
+                            <button type="button" className="btn btn-warning up-si" onClick={this.onClear}>Cancel</button>
                         </form>
                     </div>
                 </div>

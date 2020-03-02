@@ -20,14 +20,14 @@ export default class DataItem extends Component {
 
 		return (
 			<tr>
-                <td>{ index + 1 }</td>
+                <td className="al-ct">{ index + 1 }</td>
                 <td>
                     { task.name }
                 </td>
-                <td>
-                    <span className={task.status===true?"label label-success align":"label label-danger align"} onClick={ this.onChangeStatus }>{ task.status===true?'Avtive':'DeAvtive' }</span>
+                <td className="al-ct">
+                    <span className={task.status===true?"label label-success":"label label-danger"} onClick={ this.onChangeStatus }>{ task.status===true?'Active':'DeActive' }</span>
                 </td>
-                <td>
+                <td className="al-ct">
                     <button 
                         className="align-item" 
                         type="submit" 

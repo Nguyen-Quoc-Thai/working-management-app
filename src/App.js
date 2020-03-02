@@ -23,7 +23,7 @@ export default class App extends Component {
                 searchKeyWord: '',
                 sort: {
                     by: '',
-                    value: 1
+                    value: 0
                 }
             };
     }
@@ -34,32 +34,6 @@ export default class App extends Component {
                 tasks: JSON.parse(localStorage.getItem('tasks'))
             });
         }
-    }
-
-    onGenerateData = () => {
-        var tasks = [
-            {
-                id: this.generateID(),
-                name: "An",
-                status: true
-            },
-            {
-                id: this.generateID(),
-                name: "Ngu",
-                status: false
-            },
-            {
-                id: this.generateID(),
-                name: "Code",
-                status: true
-            }
-        ];
-
-        this.setState({
-            tasks : tasks
-        });
-
-        localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     generateID(){
@@ -92,6 +66,10 @@ export default class App extends Component {
     onSubmit = (item) => {
         var { tasks } = this.state;
 
+        this.setState({
+            formAddActive: false
+        });
+
         if(item && item.id===''){
             item.id = this.generateID();
             tasks.push(item);    
@@ -111,15 +89,13 @@ export default class App extends Component {
         var { tasks } = this.state;
         var indexOfID = this.findIndexOfID(id);
 
-        if(indexOfID!==-1){
-             tasks[indexOfID].status = !tasks[indexOfID].status;
+        tasks[indexOfID].status = !tasks[indexOfID].status;
 
-            this.setState({
-                tasks: tasks
-            });
+        this.setState({
+            tasks: tasks
+        });
 
-            localStorage.setItem('tasks',JSON.stringify(tasks));    
-        }
+        localStorage.setItem('tasks',JSON.stringify(tasks));    
     }
 
     findIndexOfID = (id) => {
@@ -232,6 +208,8 @@ export default class App extends Component {
             });
         }
 
+        localStorage.setItem('tasks',JSON.stringify(tasks));
+
         var formAdd = this.state.formAddActive ? <FormAdd 
                                                         onClickAddFormTitle={ this.onClickAddFormTitle } 
                                                         onSubmit={this.onSubmit}
@@ -243,14 +221,13 @@ export default class App extends Component {
                 <div className="container">
                     <h1 className="header-style">Working Management</h1>
                     <div className="row">
-                        <div className={this.state.formAddActive ? "col-xs-4 col-sm-4 col-md-4 col-lg-4":""}>
+                        <div className={formAddActive ? "col-xs-4 col-sm-4 col-md-4 col-lg-4":""}>
                             { formAdd }
                         </div>
-                        <div className={this.state.formAddActive ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
+                        <div className={formAddActive ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <BtnAddForm onClickAddFormBtn={this.onClickAddFormBtn}/>
-                                    <button type="button" className="btn btn-danger" onClick={ this.onGenerateData }>Gererate DATA</button>
                                 </div>
                             </div>
                             <div className="row">

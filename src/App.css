@@ -45,7 +45,8 @@
 }
 
 .mr-2{
-  margin-right: 2px;
+  margin-right: 4px;
+  margin-left: 60px;
 }
 
 .pd-r-0{
@@ -61,13 +62,36 @@
   margin: 2px 57% 0 43%;
 }
 
+.align-header-table{
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500px;
+  text-transform: uppercase;
+}
+
+.table{
+  border: 1px solid black;
+}
+
+.he-header{
+  height: 45px;
+}
+
 .align-item{
   padding-left: 30%;
   color: white;
 }
 
+.al-ct{
+  align-items: center;
+  text-align: center;
+}
+
 .panel-title{
   cursor: pointer;
+  font-family: sans-serif;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .btn{
@@ -77,9 +101,43 @@
 }
 
 .he-30{
-  height: 30px;
+  height: 40px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.seleted{
+.selected{
     color: green;
+}
+
+.btn-add{
+  height: 50px;
+  width: 200px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-family: sans-serif;
+}
+
+.ft-size{
+  font-size: 11px;
+}
+
+.mt-5px{
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.up-si{
+  height: 45px;
+  width: 125px;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 25px;
+  margin-right: 3px;
+}
+
+.dropdown-item{
+  cursor: pointer;
 }
