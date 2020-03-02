@@ -66,6 +66,12 @@ export default class App extends Component {
     onSubmit = (item) => {
         var { tasks } = this.state;
 
+        if(item.status === "true"){
+            item.status = true;
+        }else{
+            item.status = false;
+        }
+
         this.setState({
             formAddActive: false
         });
@@ -79,7 +85,7 @@ export default class App extends Component {
         }
         
         this.setState({
-            tasks:tasks,
+            tasks:tasks
         })
 
         localStorage.setItem('tasks',JSON.stringify(tasks));

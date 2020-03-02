@@ -19,7 +19,7 @@ export default class FormAdd extends Component {
         var target = event.target;
         var name = target.name;
         var value = target.value;
-
+        
         this.setState({
             [name]: value
         })
