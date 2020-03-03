@@ -32,11 +32,11 @@ class FormAdd extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onAddTask(this.state);
-        //this.props.onSubmit(this.state);
+        this.props.onPanelClose();
     }
 
     onClear = () => {
-        this.props.onClickAddFormTitle();
+        this.props.onPanelClose();
     }
 
     componentWillMount(){

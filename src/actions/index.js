@@ -31,3 +31,10 @@ export const toggleStatus = (id) => {
 		id
 	}
 }
+
+export const delTask = (id) => {
+	return {
+		type: types.DEL_TASK,
+		id
+	}
+}

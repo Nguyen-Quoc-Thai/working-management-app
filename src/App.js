@@ -38,28 +38,6 @@ class App extends Component {
         return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
     }
 
-    onClickAddFormTitle = () =>{
-        // this.setState({
-        //     formAddActive : false,
-        // });
-        this.props.onPanelClose();
-    }
-
-
-    onClickAddFormBtn = () =>{
-        // if(this.state.formAddActive){
-        //     this.setState({
-        //         taskEditing: null
-        //     });
-        // }else{
-        //     this.setState({
-        //         formAddActive : true,
-        //         taskEditing: null
-        //     });
-        // }
-        this.props.onBtnAdd();
-    }
-
     onSubmit = (item) => {
         var { tasks } = this.state;
 
@@ -88,19 +66,6 @@ class App extends Component {
         localStorage.setItem('tasks',JSON.stringify(tasks));
     }
 
-    // onChangeStatus = (id) => {
-    //     var { tasks } = this.state;
-    //     var indexOfID = this.findIndexOfID(id);
-
-    //     tasks[indexOfID].status = !tasks[indexOfID].status;
-
-    //     this.setState({
-    //         tasks: tasks
-    //     });
-
-    //     localStorage.setItem('tasks',JSON.stringify(tasks));    
-    // }
-
     findIndexOfID = (id) => {
         var { tasks } = this.state;
         for (let i=0; i<tasks.length; i++) {
@@ -110,23 +75,6 @@ class App extends Component {
         }
 
         return -1;
-    }
-
-    onDeleteItem = (id) => {
-        var { tasks } = this.state;
-        var indexOfID = this.findIndexOfID(id);
-        
-        if(indexOfID!==-1){
-            this.onClickAddFormTitle();
-            tasks.splice(indexOfID, 1);        
-
-            this.setState({
-                tasks: tasks
-            });
-
-            localStorage.setItem('tasks',JSON.stringify(tasks));    
-        }
-        
     }
 
     onUpdateItem = (id) => {
@@ -230,7 +178,7 @@ class App extends Component {
                         <div className={DisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <BtnAddForm onClickAddFormBtn = { this.onClickAddFormBtn }/>
+                                    <BtnAddForm />
                                 </div>
                             </div>
                             <div className="row">
@@ -244,9 +192,7 @@ class App extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <DataTable 
-                                        //onChangeStatus={this.onChangeStatus}
-                                        onDeleteItem={this.onDeleteItem}
+                                    <DataTable
                                         onUpdateItem={this.onUpdateItem}
                                         onFilter={this.onFilter}
                                     />
@@ -267,13 +213,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onBtnAdd: () => {
-            dispatch(actions.btnAdd());
-
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

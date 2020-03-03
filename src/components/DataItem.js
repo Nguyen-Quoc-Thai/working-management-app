@@ -10,7 +10,8 @@ class DataItem extends Component {
     }
 
     onDeleteItem = () => {
-        this.props.onDeleteItem(this.props.task.id);
+        this.props.onDeleteTask(this.props.task.id);
+        this.prop.onPanelClose();
     }
 
     onUpdateItem = () => {
@@ -59,6 +60,12 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onToggleStatus: (id) => {
             dispatch(actions.toggleStatus(id));
+        },
+        onDeleteTask: (id) => {
+            dispatch(actions.delTask(id));
+        },
+        onPanelClose: () => {
+            dispatch(actions.panelClose());
         }
     }
 }

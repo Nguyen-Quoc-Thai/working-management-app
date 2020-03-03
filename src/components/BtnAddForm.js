@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
+import * as actions from './../actions/index';
+import { connect } from 'react-redux';
+
 class BtnAddForm extends Component {
 
 	onClickAddFormBtn = () =>{
-		this.props.onClickAddFormBtn();
+		this.props.onClickBtnAdd();
 	}
 
 
@@ -17,5 +20,16 @@ class BtnAddForm extends Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {}
+}
 
-export default BtnAddForm;
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		onClickBtnAdd: () => {
+			dispatch(actions.btnAdd());
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BtnAddForm);
