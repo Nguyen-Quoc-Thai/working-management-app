@@ -12,3 +12,9 @@ export const addTask = (task) => {
 		task
 	}
 };
+
+export const btnAdd = () => {
+	return {
+		type: types.BTN_ADD
+	}
+};

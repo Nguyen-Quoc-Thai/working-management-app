@@ -209,7 +209,6 @@ export default class App extends Component {
 
         var formAdd = this.state.formAddActive ? <FormAdd 
                                                         onClickAddFormTitle={ this.onClickAddFormTitle } 
-                                                        onSubmit={this.onSubmit}
                                                         taskEditing={taskEditing}
                                                     />:<div></div>;
 
@@ -224,7 +223,7 @@ export default class App extends Component {
                         <div className={formAddActive ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <BtnAddForm onClickAddFormBtn={this.onClickAddFormBtn}/>
+                                    <BtnAddForm/>
                                 </div>
                             </div>
                             <div className="row">

@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 
-export default class DataTable extends Component {
+import { connect } from 'react-redux';
+import * as actions from './../actions/index';
 
-	onClickAddFormBtn = () =>{
+class DataTable extends Component {
+
+	onBtnAdd = () =>{
 		this.props.onClickAddFormBtn();
 	}
+
+
 
 	render() {
 		return (
@@ -14,3 +19,19 @@ export default class DataTable extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+
+	}
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		onBtnAdd: {
+			dispatch(actions.btnAdd());
+		}
+	}
+};
+
+export default connect(mapStateToProps, null)(DataTable);
