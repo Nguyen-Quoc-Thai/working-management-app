@@ -47,15 +47,19 @@ var myReducer = (state = initialState, action) => {
 		case types.TOGGLE_STATUS: {
 
 			var index = findIndexOfID(action.id);
-			state[index].status = !state[index].status;
-			console.log(state[index].status);
-			console.log(typeof(state[index].status));
+
+			state[index] = {
+				id: {...state[index]}.id,
+				name: {...state[index]}.name,
+				status: !{...state[index]}.status
+			}
 
 			localStorage.setItem('tasks', JSON.stringify(state));
 			return [...state];
 		}
 
-		default: return state;
+		default: 
+			return state;
 	}
 	return state;
 }
