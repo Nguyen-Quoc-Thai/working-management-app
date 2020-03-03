@@ -8,3 +8,5 @@ export const PANEL_CLOSE = 'PANEL_CLOSE';
 
 export const BTN_UPDATE = 'BTN_UPDATE';
 
+export const TOGGLE_STATUS = 'TOGGLE_STATUS';
+

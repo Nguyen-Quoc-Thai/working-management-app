@@ -9,11 +9,20 @@ var generateID = () => {
 }
 
 
-
-
 var data = JSON.parse(localStorage.getItem('tasks'));
 
 var initialState = data ? data : [];
+
+var findIndexOfID = (id) => {
+    var tasks = initialState;
+    for (let i=0; i<tasks.length; i++) {
+        if(tasks[i].id===id){
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 var myReducer = (state = initialState, action) => {
 	switch(action.type){
@@ -32,7 +41,17 @@ var myReducer = (state = initialState, action) => {
 			state.push(newTask);
 
 			localStorage.setItem('tasks', JSON.stringify(state));
+			return [...state];
+		}
 
+		case types.TOGGLE_STATUS: {
+
+			var index = findIndexOfID(action.id);
+			state[index].status = !state[index].status;
+			console.log(state[index].status);
+			console.log(typeof(state[index].status));
+
+			localStorage.setItem('tasks', JSON.stringify(state));
 			return [...state];
 		}
 

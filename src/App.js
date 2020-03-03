@@ -88,18 +88,18 @@ class App extends Component {
         localStorage.setItem('tasks',JSON.stringify(tasks));
     }
 
-    onChangeStatus = (id) => {
-        var { tasks } = this.state;
-        var indexOfID = this.findIndexOfID(id);
+    // onChangeStatus = (id) => {
+    //     var { tasks } = this.state;
+    //     var indexOfID = this.findIndexOfID(id);
 
-        tasks[indexOfID].status = !tasks[indexOfID].status;
+    //     tasks[indexOfID].status = !tasks[indexOfID].status;
 
-        this.setState({
-            tasks: tasks
-        });
+    //     this.setState({
+    //         tasks: tasks
+    //     });
 
-        localStorage.setItem('tasks',JSON.stringify(tasks));    
-    }
+    //     localStorage.setItem('tasks',JSON.stringify(tasks));    
+    // }
 
     findIndexOfID = (id) => {
         var { tasks } = this.state;
@@ -245,7 +245,7 @@ class App extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <DataTable 
-                                        onChangeStatus={this.onChangeStatus}
+                                        //onChangeStatus={this.onChangeStatus}
                                         onDeleteItem={this.onDeleteItem}
                                         onUpdateItem={this.onUpdateItem}
                                         onFilter={this.onFilter}

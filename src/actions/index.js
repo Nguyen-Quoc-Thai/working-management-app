@@ -24,3 +24,10 @@ export const panelClose = () => {
 		type: types.PANEL_CLOSE
 	}
 }
+
+export const toggleStatus = (id) => {
+	return {
+		type: types.TOGGLE_STATUS,
+		id
+	}
+}

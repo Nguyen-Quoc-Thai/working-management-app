@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
-export default class DataItem extends Component {
+import { connect } from 'react-redux';
+import * as actions from './../actions/index';
+
+class DataItem extends Component {
 
     onChangeStatus = () => {
-        this.props.onChangeStatus(this.props.task.id);
+        this.props.onToggleStatus(this.props.task.id);
     }
 
     onDeleteItem = () => {
@@ -45,3 +48,19 @@ export default class DataItem extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+    return {
+
+    };
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onToggleStatus: (id) => {
+            dispatch(actions.toggleStatus(id));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataItem);
