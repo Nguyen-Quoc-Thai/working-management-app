@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-export default class FormAdd extends Component {
+import { connect } from 'react-redux';
+
+import * as actions from './../actions/index';
+ 
+class FormAdd extends Component {
 
     constructor(props){
         super(props);
@@ -27,7 +31,8 @@ export default class FormAdd extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.onSubmit(this.state);
+        this.props.onAddTask(this.state);
+        //this.props.onSubmit(this.state);
     }
 
     onClear = () => {
@@ -111,3 +116,18 @@ export default class FormAdd extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onAddTask: (task) => {
+            dispatch(actions.addTask(task))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormAdd);

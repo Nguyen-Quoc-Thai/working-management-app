@@ -13,7 +13,6 @@ export default class App extends Component {
     constructor(props){
             super(props);
             this.state = {
-                tasks : [], // id, name, status
                 formAddActive: false,
                 taskEditing: null,
                 filter: {
@@ -26,14 +25,6 @@ export default class App extends Component {
                     value: 0
                 }
             };
-    }
-
-    componentWillMount(){
-        if(localStorage && localStorage.getItem('tasks')){
-            this.setState({
-                tasks: JSON.parse(localStorage.getItem('tasks'))
-            });
-        }
     }
 
     generateID(){
@@ -174,47 +165,47 @@ export default class App extends Component {
 
     render() {
 
-        var { tasks, formAddActive, taskEditing, filter, searchKeyWord, sort } = this.state; 
+        var { formAddActive, taskEditing, filter, searchKeyWord, sort } = this.state; 
 
-        if(sort.by === 'name'){
-            tasks.sort((task1, task2) => {
-                if(task1.name > task2.name) {
-                    return sort.value;  
-                }else if(task1.name < task2.name) {
-                    return -sort.value;  
-                }else return 0;
-            });
-        }else{
-            tasks.sort((task1, task2) => {
-                if(task1.status > task2.status) {
-                    return -sort.value;  
-                }else if(task1.status < task2.status) {
-                    return sort.value;  
-                }else return 0;
-            });
-        }
+        // if(sort.by === 'name'){
+        //     tasks.sort((task1, task2) => {
+        //         if(task1.name > task2.name) {
+        //             return sort.value;  
+        //         }else if(task1.name < task2.name) {
+        //             return -sort.value;  
+        //         }else return 0;
+        //     });
+        // }else{
+        //     tasks.sort((task1, task2) => {
+        //         if(task1.status > task2.status) {
+        //             return -sort.value;  
+        //         }else if(task1.status < task2.status) {
+        //             return sort.value;  
+        //         }else return 0;
+        //     });
+        // }
 
-        localStorage.setItem('tasks',JSON.stringify(tasks));
+        // localStorage.setItem('tasks',JSON.stringify(tasks));
 
-        if(filter){
-            if(filter.name){
-                tasks = tasks.filter((task) => {
-                    return task.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1;
-                })
-            }
-            tasks = tasks.filter((task) => {
-                if(filter.status !== -1){ 
-                    return task.status === (filter.status === 1 ? false : true);   
-                }
-                return task;
-            })
-        }
+        // if(filter){
+        //     if(filter.name){
+        //         tasks = tasks.filter((task) => {
+        //             return task.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1;
+        //         })
+        //     }
+        //     tasks = tasks.filter((task) => {
+        //         if(filter.status !== -1){ 
+        //             return task.status === (filter.status === 1 ? false : true);   
+        //         }
+        //         return task;
+        //     })
+        // }
 
-        if(searchKeyWord){
-            tasks = tasks.filter((task) => {
-                return task.name.toLowerCase().indexOf(searchKeyWord.toLowerCase()) !== -1;
-            })
-        }
+        // if(searchKeyWord){
+        //     tasks = tasks.filter((task) => {
+        //         return task.name.toLowerCase().indexOf(searchKeyWord.toLowerCase()) !== -1;
+        //     })
+        // }
 
         var formAdd = this.state.formAddActive ? <FormAdd 
                                                         onClickAddFormTitle={ this.onClickAddFormTitle } 
@@ -248,7 +239,6 @@ export default class App extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <DataTable 
-                                        tasks={ tasks } 
                                         onChangeStatus={this.onChangeStatus}
                                         onDeleteItem={this.onDeleteItem}
                                         onUpdateItem={this.onUpdateItem}

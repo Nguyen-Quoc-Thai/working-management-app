@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import DataItem from './DataItem';
 
-export default class DataTable extends Component {
+import { connect } from 'react-redux';
+
+class DataTable extends Component {
 
 	constructor(props){
 		super(props);
@@ -90,3 +92,11 @@ export default class DataTable extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		tasks: state.tasks
+	}
+}
+
+export default connect(mapStateToProps, null)(DataTable);
