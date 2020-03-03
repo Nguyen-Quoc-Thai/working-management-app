@@ -84,7 +84,7 @@
 
 .ov-hd{
   max-width: 200px;
-  text-overflow: hidden;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
 
