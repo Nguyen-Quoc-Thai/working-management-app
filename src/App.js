@@ -8,12 +8,15 @@ import BtnSort from './components/BtnSort';
 import DataTable from './components/DataTable';
 
 
-export default class App extends Component {
+import { connect } from 'react-redux';
+import * as actions from './actions/index';
+
+
+class App extends Component {
     
     constructor(props){
             super(props);
             this.state = {
-                formAddActive: false,
                 taskEditing: null,
                 filter: {
                     name: '',
@@ -36,22 +39,25 @@ export default class App extends Component {
     }
 
     onClickAddFormTitle = () =>{
-        this.setState({
-            formAddActive : false,
-        });
+        // this.setState({
+        //     formAddActive : false,
+        // });
+        this.props.onPanelClose();
     }
-    
+
+
     onClickAddFormBtn = () =>{
-        if(this.state.formAddActive){
-            this.setState({
-                taskEditing: null
-            });
-        }else{
-            this.setState({
-                formAddActive : true,
-                taskEditing: null
-            });
-        }
+        // if(this.state.formAddActive){
+        //     this.setState({
+        //         taskEditing: null
+        //     });
+        // }else{
+        //     this.setState({
+        //         formAddActive : true,
+        //         taskEditing: null
+        //     });
+        // }
+        this.props.onBtnAdd();
     }
 
     onSubmit = (item) => {
@@ -165,7 +171,9 @@ export default class App extends Component {
 
     render() {
 
-        var { formAddActive, taskEditing, filter, searchKeyWord, sort } = this.state; 
+        var { taskEditing, filter, searchKeyWord, sort } = this.state; 
+
+        var { DisplayForm } = this.props;
 
         // if(sort.by === 'name'){
         //     tasks.sort((task1, task2) => {
@@ -207,23 +215,22 @@ export default class App extends Component {
         //     })
         // }
 
-        var formAdd = this.state.formAddActive ? <FormAdd 
-                                                        onClickAddFormTitle={ this.onClickAddFormTitle } 
-                                                        taskEditing={taskEditing}
-                                                    />:<div></div>;
+        var formAdd = DisplayForm ? <FormAdd 
+                                            taskEditing={taskEditing}
+                                        />:<div></div>;
 
         return (
             <div>
                 <div className="container">
                     <h1 className="header-style">Working Management</h1>
                     <div className="row">
-                        <div className={formAddActive ? "col-xs-4 col-sm-4 col-md-4 col-lg-4":""}>
+                        <div className={DisplayForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4":""}>
                             { formAdd }
                         </div>
-                        <div className={formAddActive ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
+                        <div className={DisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <BtnAddForm/>
+                                    <BtnAddForm onClickAddFormBtn = { this.onClickAddFormBtn }/>
                                 </div>
                             </div>
                             <div className="row">
@@ -252,3 +259,21 @@ export default class App extends Component {
         );
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        DisplayForm: state.DisplayForm
+    }
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onBtnAdd: () => {
+            dispatch(actions.btnAdd());
+
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

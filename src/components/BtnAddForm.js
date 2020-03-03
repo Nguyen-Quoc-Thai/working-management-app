@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 
-import { connect } from 'react-redux';
-import * as actions from './../actions/index';
+class BtnAddForm extends Component {
 
-class DataTable extends Component {
-
-	onBtnAdd = () =>{
+	onClickAddFormBtn = () =>{
 		this.props.onClickAddFormBtn();
 	}
 
@@ -20,18 +17,5 @@ class DataTable extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
 
-	}
-};
-
-const mapDispatchToProps = (dispatch, props) => {
-	return {
-		onBtnAdd: {
-			dispatch(actions.btnAdd());
-		}
-	}
-};
-
-export default connect(mapStateToProps, null)(DataTable);
+export default BtnAddForm;

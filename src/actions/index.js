@@ -18,3 +18,9 @@ export const btnAdd = () => {
 		type: types.BTN_ADD
 	}
 };
+
+export const panelClose = () => {
+	return {
+		type: types.PANEL_CLOSE
+	}
+}

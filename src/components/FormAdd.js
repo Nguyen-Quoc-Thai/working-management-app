@@ -16,7 +16,7 @@ class FormAdd extends Component {
     }
 
     onClickAddFormTitle = () =>{
-        this.props.onClickAddFormTitle();
+        this.props.onPanelClose();
     }
 
     onChange = (event) => {
@@ -126,6 +126,10 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddTask: (task) => {
             dispatch(actions.addTask(task))
+        },
+        
+        onPanelClose: () => {
+            dispatch(actions.panelClose());
         }
     }
 }

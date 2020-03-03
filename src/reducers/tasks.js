@@ -33,8 +33,6 @@ var myReducer = (state = initialState, action) => {
 
 			localStorage.setItem('tasks', JSON.stringify(state));
 
-			console.log(state);
-
 			return [...state];
 		}
 
