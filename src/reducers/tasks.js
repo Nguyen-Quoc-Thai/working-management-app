@@ -79,6 +79,40 @@ var myReducer = (state = initialState, action) => {
 			return [...state];
 		}
 
+		case types.FILTER_TABLE: {
+
+			var filter = {
+				filterName: action.filter.filterName,
+				filterStatus: action.filter.filterStatus === '1' ? false : (action.filter.filterStatus === '0') ? true : -1
+			}
+
+        	state = JSON.parse(localStorage.getItem('tasks'));
+
+			if(filter){
+
+	            if(filter.filterName){
+	                state = state.filter((task) => {
+	                    return task.name.toLowerCase().indexOf(filter.filterName.toLowerCase()) !== -1;
+	                })
+	            }
+
+	            state = state.filter((task) => {
+
+	                if(filter.filterStatus !== -1){ 
+	                	
+	                	console.log(task.status);
+	                	console.log(filter.filterStatus);
+
+	                    return task.status === filter.filterStatus;   
+	                }
+
+	                return task;
+	            })
+	        }
+			
+			return state;
+		}
+
 		default: 
 			return state;
 	}

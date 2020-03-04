@@ -16,3 +16,4 @@ export const EDIT_TASK = 'EDIT_TASK';
 
 export const RESET_FORM = 'RESET_FORM';
 
+export const FILTER_TABLE = 'FILTER_TABLE';

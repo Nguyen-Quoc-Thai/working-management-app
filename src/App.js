@@ -28,14 +28,14 @@ class App extends Component {
             };
     }
 
-    onFilter = (filterName, filterStatus) => {
-        this.setState({
-            filter:{
-                name: filterName,
-                status: parseInt(filterStatus)
-            }
-        });
-    }
+    // onFilter = (filterName, filterStatus) => {
+    //     this.setState({
+    //         filter:{
+    //             name: filterName,
+    //             status: parseInt(filterStatus)
+    //         }
+    //     });
+    // }
 
     onSearchKeyWord = (data) => {
         this.setState({
@@ -124,7 +124,7 @@ class App extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <DataTable
-                                        onFilter={this.onFilter}
+                                        //onFilter={this.onFilter}
                                     />
                                 </div>
                             </div>

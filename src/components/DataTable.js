@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DataItem from './DataItem';
 
 import { connect } from 'react-redux';
+import * as actions from './../actions/index';
 
 class DataTable extends Component {
 
@@ -9,7 +10,7 @@ class DataTable extends Component {
 		super(props);
 		this.state = {
 			filterName: '', 
-			filterStatus: '-1'
+			filterStatus: -1
 		}
 	}
 
@@ -22,14 +23,20 @@ class DataTable extends Component {
 			[name]:value
 		});
 
-		this.props.onFilter(
+		this.props.onFilterTable(
 			name === 'filterName' ? value : this.state.filterName,
-			name === 'filterStatus' ? value : this.state.filterStatus);
+			name === 'filterStatus' ? value : this.state.filterStatus
+		);
+
+
+		// this.props.onFilter(
+		// 	name === 'filterName' ? value : this.state.filterName,
+		// 	name === 'filterStatus' ? value : this.state.filterStatus);
 	}
 
 	render() {
 
-		var { tasks } =  this.props; // var tasks = this.props.tasks;
+		var { tasks } = this.props;
 
 		var elementTasks = tasks.map((task, index) => {
 			return <DataItem 
@@ -38,6 +45,7 @@ class DataTable extends Component {
 						task={ task }
 					/>
 		});
+
 
 		return (
 			<div>
@@ -91,8 +99,16 @@ class DataTable extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		tasks: state.tasks
+		tasks: state.tasks,
 	}
 }
 
-export default connect(mapStateToProps, null)(DataTable);
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		onFilterTable: (filterName, filterStatus) => {
+			dispatch(actions.filterTable(filterName, filterStatus));
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataTable);

@@ -3,7 +3,6 @@ import tasks from './tasks';
 import DisplayForm from './DisplayForm';
 import TaskEditing from './TaskEditing';
 
-
 const myReducer = combineReducers({
 	tasks,
 	DisplayForm,

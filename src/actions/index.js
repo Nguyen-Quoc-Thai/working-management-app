@@ -51,3 +51,13 @@ export const resetFormAdd = () => {
 		type: types.RESET_FORM
 	}
 }
+
+export const filterTable = (filterName, filterStatus) => {
+	return {
+		type: types.FILTER_TABLE,
+		filter: {
+			filterName: filterName,
+			filterStatus: filterStatus
+		}
+	}
+}
