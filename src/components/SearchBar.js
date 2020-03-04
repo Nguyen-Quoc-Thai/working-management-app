@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-export default class DataTable extends Component {
+import { connect } from 'react-redux';
+import * as actions from './../actions/index';
+
+class SearchBar extends Component {
 
 	constructor(props){
 		super(props);
@@ -20,7 +23,7 @@ export default class DataTable extends Component {
 	}
 
 	onSearchKeyWord = () => {
-		this.props.onSearchKeyWord(this.state.searchKeyWord);
+		this.props.onSearchBar(this.state);
 	}
 
 	render() {
@@ -53,3 +56,13 @@ export default class DataTable extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = (dispatch, props) => {
+	return {
+		onSearchBar: (regex) => {
+			dispatch(actions.searchBar(regex));
+		}
+	}
+}
+
+export default connect(null, mapDispatchToProps)(SearchBar);

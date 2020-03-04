@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-export default class DataTable extends Component {
+import { connect } from 'react-redux';
+import * as actions from './../actions/index';
+
+class BtnSort extends Component {
 
     constructor(props){
         super(props);
@@ -27,6 +30,10 @@ export default class DataTable extends Component {
 
         var { sort } = this.state;
 
+        var { tasks, SortTable } = this.props;
+
+        console.log(SortTable);
+
 		return (
 			<div>
 				<br/>
@@ -36,24 +43,24 @@ export default class DataTable extends Component {
                     </button>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <a 
-                            className={(sort.by==="name" && sort.value === 1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
+                            className={(SortTable.by==="name" && SortTable.value === 1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('name', 1)}}
 
                         >Name A-Z</a>
                         <a 
-                            className={(sort.by==="name" && sort.value === -1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
+                            className={(SortTable.by==="name" && SortTable.value === -1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('name', -1)}}
 
                         >Name Z-A</a>
                         
                         <hr/>
                         <a 
-                            className={(sort.by==="status" && sort.value === 1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
+                            className={(SortTable.by==="status" && SortTable.value === 1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('status', 1)}}
 
                         >Status Active</a>
                         <a 
-                            className={(sort.by==="status" && sort.value === -1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
+                            className={(SortTable.by==="status" && SortTable.value === -1) ? "dropdown-item sort-item-selected" : "dropdown-item"} 
                             onClick={() => {this.onSortTable('status', -1)}}
 
                         >Status DeActive</a>
@@ -63,3 +70,20 @@ export default class DataTable extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+    return {
+        SortTable: state.SortTable
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onSortTable: (by, value) => {
+            dispatch(actions.sortTable(by, value));
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(BtnSort);

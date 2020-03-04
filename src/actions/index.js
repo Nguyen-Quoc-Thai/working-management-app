@@ -56,8 +56,25 @@ export const filterTable = (filterName, filterStatus) => {
 	return {
 		type: types.FILTER_TABLE,
 		filter: {
-			filterName: filterName,
-			filterStatus: filterStatus
+			filterName,
+			filterStatus
+		}
+	}
+}
+
+export const searchBar = (regex) => {
+	return {
+		type: types.SEARCH_BAR,
+		regex
+	}
+}
+
+export const sortTable = (by, value) => {
+	return {
+		type: types.SORT_TABLE,
+		sort: {
+			by,
+			value
 		}
 	}
 }

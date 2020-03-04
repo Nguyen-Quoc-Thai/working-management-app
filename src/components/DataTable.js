@@ -36,7 +36,30 @@ class DataTable extends Component {
 
 	render() {
 
-		var { tasks } = this.props;
+		var { tasks, SortTable } = this.props;
+
+        console.log(SortTable);
+
+
+		if(SortTable.by === 'name'){
+            tasks.sort((task1, task2) => {
+                if(task1.name > task2.name) {
+                    return SortTable.value;  
+                }else if(task1.name < task2.name) {
+                    return -SortTable.value;  
+                }else return 0;
+            });
+        }else{
+            tasks.sort((task1, task2) => {
+                if(task1.status > task2.status) {
+                    return -SortTable.value;  
+                }else if(task1.status < task2.status) {
+                    return SortTable.value;  
+                }else return 0;
+            });
+        }
+
+        //localStorage.setItem('tasks',JSON.stringify(tasks));
 
 		var elementTasks = tasks.map((task, index) => {
 			return <DataItem 
@@ -100,6 +123,7 @@ class DataTable extends Component {
 const mapStateToProps = (state) => {
 	return {
 		tasks: state.tasks,
+		SortTable: state.SortTable
 	}
 }
 

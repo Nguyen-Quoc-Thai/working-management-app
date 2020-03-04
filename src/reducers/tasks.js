@@ -99,10 +99,6 @@ var myReducer = (state = initialState, action) => {
 	            state = state.filter((task) => {
 
 	                if(filter.filterStatus !== -1){ 
-	                	
-	                	console.log(task.status);
-	                	console.log(filter.filterStatus);
-
 	                    return task.status === filter.filterStatus;   
 	                }
 
@@ -110,6 +106,20 @@ var myReducer = (state = initialState, action) => {
 	            })
 	        }
 			
+			return state;
+		}
+
+		case types.SEARCH_BAR: {
+
+        	state = JSON.parse(localStorage.getItem('tasks'));
+
+
+			if(action.regex){
+	            state = state.filter((task) => {
+	                return task.name.toLowerCase().indexOf(action.regex.searchKeyWord.toLowerCase()) !== -1;
+	            })
+        	}
+
 			return state;
 		}
 
