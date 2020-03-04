@@ -31,7 +31,7 @@ class FormAdd extends Component {
 
     onSubmit = (event) => {
         event.preventDefault();
-        this.props.onAddTask(this.state);
+        this.props.onSaveTask(this.state);
         this.props.onPanelClose();
     }
 
@@ -51,14 +51,14 @@ class FormAdd extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps && nextProps.taskEditing){
+    componentWillReceiveProps(nextProps){   
+        if(nextProps && nextProps.TaskEditing){
             this.setState({
-                id: nextProps.taskEditing.id,
-                name: nextProps.taskEditing.name,
-                status: nextProps.taskEditing.status
+                id: nextProps.TaskEditing.id,
+                name: nextProps.TaskEditing.name,
+                status: nextProps.TaskEditing.status
             });
-        }else if(nextProps && !nextProps.taskEditing){
+        }else if(nextProps && !nextProps.TaskEditing){
             this.setState({
                 id: '',
                 name: '',
@@ -69,11 +69,9 @@ class FormAdd extends Component {
 
 	render() {
 
-        var { TaskEditing } = this.props;
+        var { TaskEditing, DisplayForm } = this.props;
 
-        if(!this.props.DisplayForm) return "";
-
-        console.log(this.props.TaskEditing);
+        if(!DisplayForm) return "";
 
         return (
 			<div>
@@ -92,7 +90,7 @@ class FormAdd extends Component {
                                     type="text" 
                                     className="form-control mt-5px"
                                     name="name"
-                                    value={TaskEditing.name}
+                                    value={this.state.name}
                                     onChange={this.onChange}
                                 />
                                 <br/>
@@ -102,7 +100,7 @@ class FormAdd extends Component {
                                 <select 
                                     className="form-control mt-5px"
                                     name="status"
-                                    value={TaskEditing.status}
+                                    value={this.state.status}
                                     onChange={this.onChange}
                                 >
                                     <option value={true}>Active</option>
@@ -130,8 +128,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddTask: (task) => {
-            dispatch(actions.addTask(task))
+        onSaveTask: (task) => {
+            dispatch(actions.saveTask(task))
         },
 
         onPanelClose: () => {

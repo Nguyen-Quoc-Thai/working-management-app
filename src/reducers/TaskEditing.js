@@ -1,6 +1,10 @@
 import * as types from './../constants/ActionTypes';
 
-var initialState = {};
+var initialState = {
+	id: '',
+	name: '',
+	status: false
+};
 
 var myReducer = (state = initialState, action) => {
 	switch(action.type){
@@ -9,8 +13,11 @@ var myReducer = (state = initialState, action) => {
 			return state;
 		}
 		case types.RESET_FORM: {
-			state = {};
-			console.log(state);
+			state = {
+				id: '',
+				name: '',
+				status: false
+			};
 			return state;
 		}
 
