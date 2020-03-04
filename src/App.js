@@ -16,7 +16,6 @@ class App extends Component {
     constructor(props){
             super(props);
             this.state = {
-                taskEditing: null,
                 filter: {
                     name: '',
                     status: -1
@@ -27,69 +26,6 @@ class App extends Component {
                     value: 0
                 }
             };
-    }
-
-    generateID(){
-        return this.rdS() + '-' + this.rdS() + this.rdS() + "-" + this.rdS() + "-" + this.rdS() + this.rdS() + this.rdS();
-    }
-
-    rdS(){ // generate random string
-        return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
-    }
-
-    onSubmit = (item) => {
-        var { tasks } = this.state;
-
-        if(item.status === "true"){
-            item.status = true;
-        }else{
-            item.status = false;
-        }
-
-        this.setState({
-            formAddActive: false
-        });
-
-        if(item && item.id===''){
-            item.id = this.generateID();
-            tasks.push(item);    
-        }else{
-            var indexOfID = this.findIndexOfID(item.id);
-            tasks[indexOfID] = item;
-        }
-        
-        this.setState({
-            tasks:tasks
-        })
-
-        localStorage.setItem('tasks',JSON.stringify(tasks));
-    }
-
-    findIndexOfID = (id) => {
-        var { tasks } = this.state;
-        for (let i=0; i<tasks.length; i++) {
-            if(tasks[i].id===id){
-                return i;
-            }
-        }
-
-        return -1;
-    }
-
-    onUpdateItem = (id) => {
-        var { tasks } = this.state;
-        var indexOfID = this.findIndexOfID(id);
-        var taskEdit = tasks[indexOfID];
-
-        this.setState({
-            taskEditing: taskEdit,
-        });
-
-        if(this.state.formAddActive===false){
-            this.setState({
-                formAddActive: true
-            });   
-        }
     }
 
     onFilter = (filterName, filterStatus) => {
@@ -118,7 +54,7 @@ class App extends Component {
 
     render() {
 
-        var { taskEditing, filter, searchKeyWord, sort } = this.state; 
+        var { filter, searchKeyWord, sort } = this.state; 
 
         var { DisplayForm } = this.props;
 
@@ -162,8 +98,6 @@ class App extends Component {
         //     })
         // }
 
-        var DisplayForm = this.props.DisplayForm;
-
         return (    
             <div>
                 <div className="container">
@@ -190,7 +124,6 @@ class App extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <DataTable
-                                        //onUpdateItem={this.onUpdateItem}
                                         onFilter={this.onFilter}
                                     />
                                 </div>

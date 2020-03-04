@@ -30,7 +30,7 @@ class DataItem extends Component {
                     { task.name }
                 </td>
                 <td className="al-ct">
-                    <span className={task.status===true?"label label-success":"label label-danger"} onClick={ this.onChangeStatus }>{ task.status===true?'Active':'DeActive' }</span>
+                    <span className={task.status===true?"label label-success cs-pt":"label label-danger cs-pt"} onClick={ this.onChangeStatus }>{ task.status===true?'Active':'DeActive' }</span>
                 </td>
                 <td className="al-ct">
                     <button 

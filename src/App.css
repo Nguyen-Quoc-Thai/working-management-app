@@ -82,6 +82,10 @@
   color: white;
 }
 
+.cs-pt{
+  cursor: pointer;
+}
+
 .ov-hd{
   max-width: 200px;
   text-overflow: ellipsis;

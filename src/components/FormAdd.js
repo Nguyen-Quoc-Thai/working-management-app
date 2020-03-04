@@ -87,6 +87,7 @@ class FormAdd extends Component {
                                     <span className="label label-info ft-size">Name</span>
                                 </label>
                                 <input 
+                                    required
                                     type="text" 
                                     className="form-control mt-5px"
                                     name="name"
