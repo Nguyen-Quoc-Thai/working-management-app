@@ -11,3 +11,7 @@ export const BTN_UPDATE = 'BTN_UPDATE';
 export const TOGGLE_STATUS = 'TOGGLE_STATUS';
 
 export const DEL_TASK = 'DEL_TASK';
+
+export const EDIT_TASK = 'EDIT_TASK';
+
+export const RESET_FORM = 'RESET_FORM';

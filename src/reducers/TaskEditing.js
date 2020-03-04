@@ -1,28 +1,21 @@
 import * as types from './../constants/ActionTypes';
 
-var initialState = false;
+var initialState = {};
 
 var myReducer = (state = initialState, action) => {
 	switch(action.type){
-		case types.BTN_ADD: {
-			if(state === false){
-				state = true;
-			}
-
+		case types.EDIT_TASK: {
+			state = action.task;
+			return state;
+		}
+		case types.RESET_FORM: {
+			state = {};
+			console.log(state);
 			return state;
 		}
 
-		case types.PANEL_CLOSE: {
-			state = false;
+		default: 
 			return state;
-		}
-
-		case types.BTN_UPDATE: {
-			state = true;
-			return state;
-		}
-
-		default: return state;
 	}
 	return state;
 }

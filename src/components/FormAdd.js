@@ -69,13 +69,17 @@ class FormAdd extends Component {
 
 	render() {
 
-        var taskEditing = this.state;
+        var { TaskEditing } = this.props;
+
+        if(!this.props.DisplayForm) return "";
+
+        console.log(this.props.TaskEditing);
 
         return (
 			<div>
 				<div className="panel panel-warning">
                     <div className="panel-heading">
-                        <h3 className="panel-title" onClick={ this.onClickAddFormTitle }> {taskEditing.id===''?'Add Working':'Update Working'}
+                        <h3 className="panel-title" onClick={ this.onClickAddFormTitle }> {TaskEditing.id===''?'Add Working':'Update Working'}
                         </h3>
                     </div>
                     <div className="panel-body">
@@ -88,7 +92,7 @@ class FormAdd extends Component {
                                     type="text" 
                                     className="form-control mt-5px"
                                     name="name"
-                                    value={taskEditing.name}
+                                    value={TaskEditing.name}
                                     onChange={this.onChange}
                                 />
                                 <br/>
@@ -98,7 +102,7 @@ class FormAdd extends Component {
                                 <select 
                                     className="form-control mt-5px"
                                     name="status"
-                                    value={taskEditing.status}
+                                    value={TaskEditing.status}
                                     onChange={this.onChange}
                                 >
                                     <option value={true}>Active</option>
@@ -119,15 +123,17 @@ class FormAdd extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        DisplayForm: state.DisplayForm,
+        TaskEditing: state.TaskEditing
     }
-}
+};
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddTask: (task) => {
             dispatch(actions.addTask(task))
         },
-        
+
         onPanelClose: () => {
             dispatch(actions.panelClose());
         }

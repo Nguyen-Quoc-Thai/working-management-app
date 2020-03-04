@@ -7,9 +7,8 @@ import SearchBar from './components/SearchBar';
 import BtnSort from './components/BtnSort';
 import DataTable from './components/DataTable';
 
-
-import { connect } from 'react-redux';
 import * as actions from './actions/index';
+import { connect } from 'react-redux';
 
 
 class App extends Component {
@@ -163,17 +162,15 @@ class App extends Component {
         //     })
         // }
 
-        var formAdd = DisplayForm ? <FormAdd 
-                                            taskEditing={taskEditing}
-                                        />:<div></div>;
+        var DisplayForm = this.props.DisplayForm;
 
-        return (
+        return (    
             <div>
                 <div className="container">
                     <h1 className="header-style">Working Management</h1>
                     <div className="row">
                         <div className={DisplayForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4":""}>
-                            { formAdd }
+                            <FormAdd />
                         </div>
                         <div className={DisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8":"col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                             <div className="row">
@@ -193,7 +190,7 @@ class App extends Component {
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <DataTable
-                                        onUpdateItem={this.onUpdateItem}
+                                        //onUpdateItem={this.onUpdateItem}
                                         onFilter={this.onFilter}
                                     />
                                 </div>
@@ -206,11 +203,10 @@ class App extends Component {
     }
 }
 
-
 const mapStateToProps = (state) => {
     return {
         DisplayForm: state.DisplayForm
     }
-};
+}
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps,null)(App);

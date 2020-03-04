@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 class BtnAddForm extends Component {
 
 	onClickAddFormBtn = () =>{
+		this.props.resetFormAdd();
 		this.props.onClickBtnAdd();
 	}
 
@@ -21,13 +22,17 @@ class BtnAddForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {}
+	return {
+	}
 }
 
 const mapDispatchToProps = (dispatch, props) => {
 	return {
 		onClickBtnAdd: () => {
 			dispatch(actions.btnAdd());
+		},
+		resetFormAdd: () => {
+			dispatch(actions.resetFormAdd());
 		}
 	}
 }

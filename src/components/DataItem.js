@@ -11,11 +11,12 @@ class DataItem extends Component {
 
     onDeleteItem = () => {
         this.props.onDeleteTask(this.props.task.id);
-        this.prop.onPanelClose();
+        this.props.onPanelClose();
     }
 
     onUpdateItem = () => {
-        this.props.onUpdateItem(this.props.task.id);
+        this.props.onClickBtnAdd();
+        this.props.onEditingTask(this.props.task);
     }
 
 	render() {
@@ -66,6 +67,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onPanelClose: () => {
             dispatch(actions.panelClose());
+        },
+        onClickBtnAdd: () => {
+            dispatch(actions.btnAdd());
+        },
+        onEditingTask: (task) => {
+            dispatch(actions.editTask(task));
         }
     }
 }

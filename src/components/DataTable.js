@@ -37,7 +37,7 @@ class DataTable extends Component {
 						index={ index } 
 						task={ task }
 						/*onDeleteItem={ this.props.onDeleteItem }*/
-						onUpdateItem={ this.props.onUpdateItem }
+						//onUpdateItem={ this.props.onUpdateItem }
 
 					/>
 		});

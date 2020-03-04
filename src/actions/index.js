@@ -38,3 +38,16 @@ export const delTask = (id) => {
 		id
 	}
 }
+
+export const editTask = (task) => {
+	return {
+		type: types.EDIT_TASK,
+		task
+	}
+}
+
+export const resetFormAdd = () => {
+	return {
+		type: types.RESET_FORM
+	}
+}
