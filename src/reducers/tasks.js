@@ -78,51 +78,7 @@ var myReducer = (state = initialState, action) => {
 			localStorage.setItem('tasks', JSON.stringify(state));
 			return [...state];
 		}
-
-		case types.FILTER_TABLE: {
-
-			var filter = {
-				filterName: action.filter.filterName,
-				filterStatus: action.filter.filterStatus === '1' ? false : (action.filter.filterStatus === '0') ? true : -1
-			}
-
-        	state = JSON.parse(localStorage.getItem('tasks'));
-
-			if(filter){
-
-	            if(filter.filterName){
-	                state = state.filter((task) => {
-	                    return task.name.toLowerCase().indexOf(filter.filterName.toLowerCase()) !== -1;
-	                })
-	            }
-
-	            state = state.filter((task) => {
-
-	                if(filter.filterStatus !== -1){ 
-	                    return task.status === filter.filterStatus;   
-	                }
-
-	                return task;
-	            })
-	        }
-			
-			return state;
-		}
-
-		case types.SEARCH_BAR: {
-
-        	state = JSON.parse(localStorage.getItem('tasks'));
-
-
-			if(action.regex){
-	            state = state.filter((task) => {
-	                return task.name.toLowerCase().indexOf(action.regex.searchKeyWord.toLowerCase()) !== -1;
-	            })
-        	}
-
-			return state;
-		}
-
+		
 		default: 
 			return state;
 	}

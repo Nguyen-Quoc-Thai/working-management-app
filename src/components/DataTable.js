@@ -27,20 +27,45 @@ class DataTable extends Component {
 			name === 'filterName' ? value : this.state.filterName,
 			name === 'filterStatus' ? value : this.state.filterStatus
 		);
-
-
-		// this.props.onFilter(
-		// 	name === 'filterName' ? value : this.state.filterName,
-		// 	name === 'filterStatus' ? value : this.state.filterStatus);
 	}
 
 	render() {
 
-		var { tasks, SortTable } = this.props;
+		var { tasks, FilterTable, Search, SortTable } = this.props;
 
-        console.log(SortTable);
+		// Get DB from Local
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+
+        // Filter Table before Render (If oke) (Filter Name and Filter Status) 
+		if(FilterTable){
+
+            if(FilterTable.filterName){
+                tasks = tasks.filter((task) => {
+                    return task.name.toLowerCase().indexOf(FilterTable.filterName.toLowerCase()) !== -1;
+                })
+            }
+
+            tasks = tasks.filter((task) => {
+
+                if(FilterTable.filterStatus !== -1){ 
+                    return (task.status === true ? 0 : 1) === FilterTable.filterStatus;   
+                }
+
+                return task;
+            })
+        }
+
+        console.log(Search);
+
+        // Search table before Render  (If oke)
+		if(Search.searchKeyWord){
+            tasks = tasks.filter((task) => {
+                return task.name.toLowerCase().indexOf(Search.searchKeyWord.toLowerCase()) !== -1;
+            })
+    	}
 
 
+    	// Sort table before Render  (If oke)
 		if(SortTable.by === 'name'){
             tasks.sort((task1, task2) => {
                 if(task1.name > task2.name) {
@@ -59,8 +84,8 @@ class DataTable extends Component {
             });
         }
 
-        //localStorage.setItem('tasks',JSON.stringify(tasks));
 
+        // Render task item
 		var elementTasks = tasks.map((task, index) => {
 			return <DataItem 
 						key={ task.id } 
@@ -123,7 +148,9 @@ class DataTable extends Component {
 const mapStateToProps = (state) => {
 	return {
 		tasks: state.tasks,
-		SortTable: state.SortTable
+		FilterTable: state.FilterTable,
+		Search: state.Search,
+		SortTable: state.SortTable,
 	}
 }
 

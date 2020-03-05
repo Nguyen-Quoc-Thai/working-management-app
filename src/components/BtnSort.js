@@ -23,16 +23,17 @@ class BtnSort extends Component {
             }
         });
 
+        var { FilterTable } = this.props;
+
         this.props.onSortTable(sortName, sortValue);
+        this.props.onFilterTable(FilterTable.filterName, FilterTable.filterStatus);
     }
 
 	render() {
 
         var { sort } = this.state;
 
-        var { tasks, SortTable } = this.props;
-
-        console.log(SortTable);
+        var { SortTable } = this.props;
 
 		return (
 			<div>
@@ -73,6 +74,7 @@ class BtnSort extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        FilterTable: state.FilterTable,
         SortTable: state.SortTable
     }
 }
@@ -81,6 +83,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onSortTable: (by, value) => {
             dispatch(actions.sortTable(by, value));
+        },
+        onFilterTable: (filterName, filterStatus) => {
+            dispatch(actions.filterTable(filterName, filterStatus));
         }
     }
 }
