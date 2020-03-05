@@ -23,12 +23,11 @@ class SearchBar extends Component {
 	}
 
 	onSearchKeyWord = () => {
+		
 		this.props.onSearchBar(this.state);
 	}
 
 	render() {
-
-
 
 		return (
 			<div>

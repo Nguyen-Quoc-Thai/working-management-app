@@ -5,33 +5,12 @@ import * as actions from './../actions/index';
 
 class BtnSort extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            sort: {
-                by: '',
-                value: 0
-            }            
-        }
-    }
-
     onSortTable = (sortName, sortValue) => { 
-        this.setState({
-            sort: {
-                by: sortName,
-                value: sortValue
-            }
-        });
-
-        var { FilterTable } = this.props;
 
         this.props.onSortTable(sortName, sortValue);
-        this.props.onFilterTable(FilterTable.filterName, FilterTable.filterStatus);
     }
 
 	render() {
-
-        var { sort } = this.state;
 
         var { SortTable } = this.props;
 
@@ -74,7 +53,6 @@ class BtnSort extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        FilterTable: state.FilterTable,
         SortTable: state.SortTable
     }
 }
@@ -83,9 +61,6 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onSortTable: (by, value) => {
             dispatch(actions.sortTable(by, value));
-        },
-        onFilterTable: (filterName, filterStatus) => {
-            dispatch(actions.filterTable(filterName, filterStatus));
         }
     }
 }

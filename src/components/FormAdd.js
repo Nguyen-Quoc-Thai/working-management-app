@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-
 import * as actions from './../actions/index';
  
 class FormAdd extends Component {
@@ -39,17 +38,17 @@ class FormAdd extends Component {
         this.props.onPanelClose();
     }
 
-    componentWillMount(){
-        var taskEditing = this.props.taskEditing;
+    // componentWillMount(){
+    //     var taskEditing = this.props.taskEditing;
 
-        if(taskEditing){
-            this.setState({
-                id: taskEditing.id,
-                name: taskEditing.name,
-                status: taskEditing.status
-            });
-        }
-    }
+    //     if(taskEditing){
+    //         this.setState({
+    //             id: taskEditing.id,
+    //             name: taskEditing.name,
+    //             status: taskEditing.status
+    //         });
+    //     }
+    // }
 
     componentWillReceiveProps(nextProps){   
         if(nextProps && nextProps.TaskEditing){
@@ -71,7 +70,7 @@ class FormAdd extends Component {
 
         var { TaskEditing, DisplayForm } = this.props;
 
-        if(!DisplayForm) return "";
+        if(!DisplayForm) return '';
 
         return (
 			<div>

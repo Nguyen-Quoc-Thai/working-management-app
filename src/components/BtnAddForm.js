@@ -10,19 +10,12 @@ class BtnAddForm extends Component {
 		this.props.onClickBtnAdd();
 	}
 
-
-
 	render() {
 		return (
 			<div>
                 <button type="button" className="btn btn-primary btn-add" onClick={this.onClickAddFormBtn}>ADD Working</button>
 			</div>
 		);
-	}
-}
-
-const mapStateToProps = (state) => {
-	return {
 	}
 }
 
@@ -37,4 +30,4 @@ const mapDispatchToProps = (dispatch, props) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BtnAddForm);
+export default connect(null, mapDispatchToProps)(BtnAddForm);

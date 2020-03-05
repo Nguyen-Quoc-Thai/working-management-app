@@ -51,12 +51,6 @@ class DataItem extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-    return {
-
-    };
-}
-
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onToggleStatus: (id) => {
@@ -77,4 +71,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DataItem);
+export default connect(null, mapDispatchToProps)(DataItem);

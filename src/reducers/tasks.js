@@ -1,18 +1,16 @@
 import * as types from './../constants/ActionTypes';
 
-var rdS = () => { // generate random string
+// Function render random charactor
+var rdS = () => {
     return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
 }
 
+// render random ID
 var generateID = () => {
     return rdS() + '-' + rdS() + rdS() + "-" + rdS() + "-" + rdS() + rdS() + rdS();
 }
 
-
-var data = JSON.parse(localStorage.getItem('tasks'));
-
-var initialState = data ? data : [];
-
+// Find index of Element by ID
 var findIndexOfID = (id) => {
     var tasks = initialState;
     for (let i=0; i<tasks.length; i++) {
@@ -24,8 +22,18 @@ var findIndexOfID = (id) => {
     return -1;
 }
 
+
+// DATA
+var data = JSON.parse(localStorage.getItem('tasks'));
+
+var initialState = data ? data : [];
+
+
+
 var myReducer = (state = initialState, action) => {
+
 	switch(action.type){
+
 		case types.LIST_ALL: {
 			return state;
 		}
@@ -78,10 +86,11 @@ var myReducer = (state = initialState, action) => {
 			localStorage.setItem('tasks', JSON.stringify(state));
 			return [...state];
 		}
-		
+
 		default: 
 			return state;
 	}
+	
 	return state;
 }
 

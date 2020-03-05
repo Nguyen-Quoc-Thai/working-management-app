@@ -6,26 +6,14 @@ import * as actions from './../actions/index';
 
 class DataTable extends Component {
 
-	constructor(props){
-		super(props);
-		this.state = {
-			filterName: '', 
-			filterStatus: -1
-		}
-	}
-
 	onChange = (event) => {
 		var target = event.target;
 		var name = target.name;
 		var value = target.value;
 
-		this.setState({
-			[name]:value
-		});
-
 		this.props.onFilterTable(
-			name === 'filterName' ? value : this.state.filterName,
-			name === 'filterStatus' ? value : this.state.filterStatus
+			name === 'filterName' ? value : this.props.FilterTable.filterName,
+			name === 'filterStatus' ? value : this.props.FilterTable.filterStatus
 		);
 	}
 
@@ -55,31 +43,32 @@ class DataTable extends Component {
             })
         }
 
-        console.log(Search);
-
         // Search table before Render  (If oke)
-		if(Search.searchKeyWord){
+		if(Search){
+
             tasks = tasks.filter((task) => {
-                return task.name.toLowerCase().indexOf(Search.searchKeyWord.toLowerCase()) !== -1;
+                return task.name.toLowerCase().indexOf(Search.toLowerCase()) !== -1;
             })
     	}
 
 
     	// Sort table before Render  (If oke)
 		if(SortTable.by === 'name'){
+
             tasks.sort((task1, task2) => {
                 if(task1.name > task2.name) {
-                    return SortTable.value;  
+                    return parseInt(SortTable.value);  
                 }else if(task1.name < task2.name) {
-                    return -SortTable.value;  
+                    return -parseInt(SortTable.value);  
                 }else return 0;
             });
         }else{
+
             tasks.sort((task1, task2) => {
                 if(task1.status > task2.status) {
-                    return -SortTable.value;  
+                    return -parseInt(SortTable.value);  
                 }else if(task1.status < task2.status) {
-                    return SortTable.value;  
+                    return parseInt(SortTable.value);  
                 }else return 0;
             });
         }
@@ -117,7 +106,7 @@ class DataTable extends Component {
 	                            	className="form-control he-30" 
 	                            	placeholder="Filter name"
 	                            	name="filterName"
-	                            	value={this.state.filterName}
+	                            	value={SortTable.filterName}
 	                            	onChange={this.onChange}
 	                             />
 	                        </td>
@@ -126,11 +115,11 @@ class DataTable extends Component {
 	                            	id="input" 
 	                            	className="form-control"
 	                            	name="filterStatus"
-	                            	value={this.state.filterStatus}
+	                            	value={SortTable.filterStatus}
 	                            	onChange={this.onChange}
 	                            >
 	                                <option value={-1}>All</option>
-	                                <option value={0}>Avtive</option>
+	                                <option value={0}>Active</option>
 	                                <option value={1}>DeActive</option>
 	                            </select>
 	                        </td>

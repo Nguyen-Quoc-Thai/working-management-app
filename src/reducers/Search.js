@@ -1,24 +1,22 @@
 import * as types from './../constants/ActionTypes';
 
-var initialState = {
-	searchKeyWord: ''
-};
+var initialState = '';
 
 var myReducer = (state = initialState, action) => {
+
 	switch(action.type){
 
 		case types.SEARCH_BAR: {
 
-        	state.searchKeyWord = action.searchKeyWord;
+			state = action.regex.searchKeyWord;
 
-			return state;
+        	return action.regex.searchKeyWord;
 		}
-
-
 
 		default: 
 			return state;
 	}
+
 	return state;
 }
 

@@ -7,12 +7,16 @@ var initialState = {
 
 var myReducer = (state = initialState, action) => {
 	switch(action.type){
+
 		case types.FILTER_TABLE: {
 
 			state.filterName = action.filter.filterName;
 			state.filterStatus = parseInt(action.filter.filterStatus);
 
-			return state;
+			return {
+				filterName : action.filter.filterName,
+				filterStatus : parseInt(action.filter.filterStatus)
+			}
 		}
 
 
