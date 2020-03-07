@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/working-management-app/static/css/main.d35bd5fb.chunk.css",
-    "main.js": "/working-management-app/static/js/main.3a90c2b7.chunk.js",
-    "main.js.map": "/working-management-app/static/js/main.3a90c2b7.chunk.js.map",
-    "runtime-main.js": "/working-management-app/static/js/runtime-main.b8142c34.js",
-    "runtime-main.js.map": "/working-management-app/static/js/runtime-main.b8142c34.js.map",
-    "static/js/2.c2f6ed11.chunk.js": "/working-management-app/static/js/2.c2f6ed11.chunk.js",
-    "static/js/2.c2f6ed11.chunk.js.map": "/working-management-app/static/js/2.c2f6ed11.chunk.js.map",
-    "index.html": "/working-management-app/index.html",
-    "precache-manifest.0a9dc0822d83d53832a52f5414a16deb.js": "/working-management-app/precache-manifest.0a9dc0822d83d53832a52f5414a16deb.js",
-    "service-worker.js": "/working-management-app/service-worker.js",
-    "static/css/main.d35bd5fb.chunk.css.map": "/working-management-app/static/css/main.d35bd5fb.chunk.css.map",
-    "static/js/2.c2f6ed11.chunk.js.LICENSE.txt": "/working-management-app/static/js/2.c2f6ed11.chunk.js.LICENSE.txt"
+    "main.css": "/working-management/static/css/main.d3de68d3.chunk.css",
+    "main.js": "/working-management/static/js/main.87e22eae.chunk.js",
+    "main.js.map": "/working-management/static/js/main.87e22eae.chunk.js.map",
+    "runtime-main.js": "/working-management/static/js/runtime-main.db776344.js",
+    "runtime-main.js.map": "/working-management/static/js/runtime-main.db776344.js.map",
+    "static/js/2.dd7b0a06.chunk.js": "/working-management/static/js/2.dd7b0a06.chunk.js",
+    "static/js/2.dd7b0a06.chunk.js.map": "/working-management/static/js/2.dd7b0a06.chunk.js.map",
+    "index.html": "/working-management/index.html",
+    "precache-manifest.77d937e414d762509cc757367a4c7e70.js": "/working-management/precache-manifest.77d937e414d762509cc757367a4c7e70.js",
+    "service-worker.js": "/working-management/service-worker.js",
+    "static/css/main.d3de68d3.chunk.css.map": "/working-management/static/css/main.d3de68d3.chunk.css.map",
+    "static/js/2.dd7b0a06.chunk.js.LICENSE.txt": "/working-management/static/js/2.dd7b0a06.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b8142c34.js",
-    "static/js/2.c2f6ed11.chunk.js",
-    "static/css/main.d35bd5fb.chunk.css",
-    "static/js/main.3a90c2b7.chunk.js"
+    "static/js/runtime-main.db776344.js",
+    "static/js/2.dd7b0a06.chunk.js",
+    "static/css/main.d3de68d3.chunk.css",
+    "static/js/main.87e22eae.chunk.js"
   ]
 }
